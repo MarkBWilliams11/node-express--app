@@ -1,0 +1,67 @@
+<nav class="navbar fixed-bottom mt-3 mb-3">
+  <div class="container-fluid">
+    <div class="navbar sticky-top container-fluid justify-content-end">
+      <!-- open sidebar button -->
+      <button
+        class="btn"
+        type="button"
+        id="sidebar"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasSidebar"
+        aria-controls="offcanvasSidebar"
+      >
+        Visit Projects
+      </button>
+
+      <!-- sidebar content -->
+
+      <div
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        aria-labelledby="sidebar-naviagation"
+        id="offcanvasSidebar"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title display-5">Dasdubdesign</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="offcanvas-body text-center">
+          <!-- general links -->
+          <div class="navbar-nav">
+            <a class="nav-link text-dark" href="/#About">About</a>
+            <a class="nav-link text-dark" href="/api/v1/contact-form"
+              >Contact</a
+            >
+          </div>
+          <!-- projects dropdown -->
+          <p class="lead">Have a look at some of the projects!</p>
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              type="button"
+              id="secondary_button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Projects
+            </a>
+            <ul
+              class="dropdown-menu border-0"
+              aria-labelledby="secondary_button dropdown"
+            >
+              <li>
+                <span class="text-muted">Coming soon...</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,11 +1,99 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include("./partials/head.ejs") -%>
+
+	<body>
+
+		<%- include("./partials/nav.ejs") -%>
+
+
+			<!-- Showcase 2 -->
+			<section class="mt-5 mb-5">
+				<div class="row justify-content-center align-items-center ">
+					<div class="col-lg-6 ">
+						<div class="card text-center border-0 ">
+							<h1 class="card-title display-1">Welcome to <%= title %>
+							</h1>
+							<div class="card-body">
+								<p class="card-text lead">
+									<%= message %>
+								</p>
+								<a href="#" class="btn" id="main_button" role="button" data-bs-toggle="tooltip"
+									data-bs-placement="bottom" title="Projects coming soon!">projects</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 ">
+						<div class="card text-center border-0 ">
+							<img src="/images/startup-undraw.svg" class="card-img img-fluid " alt="start-up image">
+							<div class="card-img-overlay">
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
+
+
+
+			<!-- About 2 -->
+			<section id="About" >
+				
+				<div class="row text-center justify-content-center algin-items-center g-5">
+					<h2 class="display-2 mt-5 mb-3">About</h2>
+					<!-- skills -->
+					<div class="col-lg-6 ">
+						<div class="card border-0">
+							<img src="/images/path-knowledge.svg" class="card-img-top img-fluid" alt="road path for knowledge">
+							<div class="card-body ">
+								<a class="card-title display-5 text-dark ">Skills</a>
+								<p class="card-text lead mt-3 mb-3">While I have worked with many languages and platforms, I particularly enjoy
+									working with NodeJS. I
+									enjoy working with the APIs and working with all kinds of data to develop applications that might be
+									useful.</p>
+								<ul style="list-style-type: none">
+									<h5 class="card-title">Markup and styling</h5>
+									<li>html</li>
+									<li>css</li>
+									<li>bootstrap</li>
+									<li>ejs</li>
+									<h5 class="card-title">Languages</h5>
+									<li>Nodejs</li>
+									<li>Javascript</li>
+									<li>Linux</li>
+									<li>PHP</li>
+									<li>Ruby</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- experiences -->
+					<div class="col-lg-6">
+						<div class="card border-0" id="experience-bg">
+							<div class="card-body">
+								<a class="card-title display-5 text-light  ">Experience</a>
+								<p class="card-text lead mt-3  mb-3">View my <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+										title="Projects coming soon" class="text-dark"> projects</a> that demonstrate working examples of
+									some of the features!
+									Building application
+									APIs
+									for enjoyment, from a simple todo app to anything imaginable.</p>
+								<a href="/api/v1/contact-form" class="btn btn-outline-light mb-5 " role="button" data-bs-toggle="tooltip"
+									data-bs-placement="bottom" title="contact form">Contact</a>
+							</div>
+							<img src="/images/sitting-on-computer.svg" class="card-img-bottom img-fluid" alt="sitting on computer">
+						</div>
+					</div>
+			</section>
+
+
+			<!-- sidebar -->
+			<%- include("./partials/sidebar.ejs") -%>
+
+			<!-- footer -->
+			<%- include("./partials/footer.ejs") -%>
+				<!-- bootstrap js -->
+				<%- include("./partials/bootstrapjs.ejs") -%>
+	</body>
+
+	</html>

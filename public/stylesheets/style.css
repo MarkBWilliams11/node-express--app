@@ -4,5 +4,30 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#main_button {
+  background-color: #536dfe;
+  color: white;
+}
+#secondary_button {
+  background-color: #2f2e41;
+  color: white;
+}
+#experience-bg {
+  background-color: #536dfe;
+  color: white;
+}
+#skill-bg {
+  background-color: #2f2e41;
+  color: white;
+}
+#sidebar {
+  background-color: #2f2e41;
+  color: white;
+}
+#contact {
+  background-color: #2f2e41;
+  color: white;
 }
