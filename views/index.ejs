@@ -1,10 +1,7 @@
 <%- include("./partials/head.ejs") -%>
 
 	<body>
-
 		<%- include("./partials/nav.ejs") -%>
-
-
 			<!-- Showcase 2 -->
 			<section class="mt-5 mb-5">
 				<div class="row justify-content-center align-items-center ">
@@ -30,15 +27,8 @@
 					</div>
 				</div>
 			</section>
-
-
-
-
-
-
 			<!-- About 2 -->
-			<section id="About" >
-				
+			<section id="About">
 				<div class="row text-center justify-content-center algin-items-center g-5">
 					<h2 class="mt-5 mb-3">About</h2>
 					<!-- skills -->
@@ -47,7 +37,8 @@
 							<img src="/images/path-knowledge.svg" class="card-img-top img-fluid" alt="road path for knowledge">
 							<div class="card-body ">
 								<a class="card-title display-5 text-dark ">Skills</a>
-								<p class="card-text lead mt-3 mb-3">While I have worked with many languages and platforms, I particularly enjoy
+								<p class="card-text  mt-3 mb-3">While I have worked with many languages and platforms, I particularly
+									enjoy
 									working with NodeJS. I
 									enjoy working with the APIs and working with all kinds of data to develop applications that might be
 									useful.</p>
@@ -72,28 +63,24 @@
 						<div class="card border-0" id="experience-bg">
 							<div class="card-body">
 								<a class="card-title display-5 text-light  ">Experience</a>
-								<p class="card-text lead mt-3  mb-3">View my <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+								<p class="card-text mt-3  mb-3">View my <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
 										title="Projects coming soon" class="text-dark"> projects</a> that demonstrate working examples of
 									some of the features!
 									Building application
 									APIs
 									for enjoyment, from a simple todo app to anything imaginable.</p>
-								<a href="/api/v1/contact-form" class="btn btn-outline-light mb-5 " role="button" data-bs-toggle="tooltip"
-									data-bs-placement="bottom" title="contact form">Contact</a>
+								<a href="/api/v1/contact-form" class="btn btn-outline-light mb-5 " role="button"
+									data-bs-toggle="tooltip" data-bs-placement="bottom" title="contact form">Contact</a>
 							</div>
 							<img src="/images/sitting-on-computer.svg" class="card-img-bottom img-fluid" alt="sitting on computer">
 						</div>
 					</div>
 			</section>
-
-
 			<!-- sidebar -->
 			<%- include("./partials/sidebar.ejs") -%>
-
-			<!-- footer -->
-			<%- include("./partials/footer.ejs") -%>
-				<!-- bootstrap js -->
-				<%- include("./partials/bootstrapjs.ejs") -%>
+				<!-- footer -->
+				<%- include("./partials/footer.ejs") -%>
+					<!-- bootstrap js -->
+					<%- include("./partials/bootstrapjs.ejs") -%>
 	</body>
-
 	</html>
