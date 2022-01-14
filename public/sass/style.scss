@@ -1,0 +1,36 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions";
+
+$primary: #536dfe;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+
+// Create your own map
+
+$custom-colors: (
+  "main_button": #536dfe,
+  "secondary_button": #2f2e41,
+);
+
+// Merge the maps
+$theme-colors: map-merge($custom-colors, $theme-colors);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+html {
+  padding: 60px;
+  font-size: 20px;
+}
+.main_button {
+  background-color: #536dfe;
+  color: #fff;
+}
+.footer-bg {
+  background-color: #000;
+}
