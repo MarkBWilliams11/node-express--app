@@ -25,7 +25,7 @@
               <label for="todo_task" class="form-label">Todo Task:</label>
               <div class="input-group mb-4">
                 <span class="input-group-text">
-                  <i class="bi bi-person-fill"></i>
+                  <i class="bi bi-chat-left-dots-fill"></i>
                 </span>
                 <input type="text" class="form-control" id="todo_task" name="todo_task" placeholder="Enter your todo">
               </div>
@@ -43,7 +43,7 @@
               </div>
               <!-- question textarea group -->
               <label for="body" class="form-label">Enter task details?</label>
-              <textarea id="body" cols="30" rows="10" class="form-control" name="body"></textarea>
+              <textarea id="body" cols="20" rows="5" class="form-control" name="body"></textarea>
               <div class="mt-3 mb-4 text-center">
                 <button type="submit" class="btn btn-primary text-light ">New Task</button>
               </div>
@@ -52,18 +52,15 @@
       </section>
 
       <!-- display the todo section -->
-
       <section>
-
-        <div class="text-center">
+        <div class="text-center ">
           <h3>List of Todos</h3>
+          <div id="noTodos"></div>
           <!--  cards-->
-          <div id="todos" class="row row-cols-1 row-cols-lg-3 g-4">
-
-
+          <div id="todos" class="row row-cols-1 row-cols-lg-3 g-4 ">
+            
           </div>
           <!--  cards end-->
-
         </div>
       </section>
 
@@ -75,88 +72,99 @@
           <%- include("./partials/bootstrapjs.ejs") -%>
             <!-- todo js -->
             <script>
-                         //Todo Class: todo model
+              //Todo class
               class Todo {
-                constructor(id, todo_task, priority, body) {
+                constructor(id, todo_task, priority, body, date) {
                   this.id = id;
                   this.todo_task = todo_task;
                   this.priority = priority;
                   this.body = body;
+                  this.date = date;
 
                 }
               }
 
-              //UI class: Hanldle UI tasks
+              //Todo UI class
               class TodoUI {
                 static displayTodos() {
-                              const todos = Store.getTodos();
-
-                  todos.forEach((todo) => TodoUI.newTodo(todo))
+                  const todos = Todostore.getTodos();
+                  if (todos.length < 1) {
+                    const no_todo_list = document.querySelector("#noTodos");
+                    const noTodos = document.createElement("div");
+                    noTodos.innerHTML = ` 
+              <div class=" mt-5 mb-5 container " style="width: 18rem;" >
+                    <div class=" text-center toggle-dark" style="height:200px;"> 
+                      <div class="card-body ">
+                        <h5 class="card-title">No Todos</h5>
+                      </div>
+                    <div class="card-footer ">
+                      ${new Date().toDateString()}
+                    </div>
+              </div>
+            </div>`;
+                    no_todo_list.appendChild(noTodos);
+                  
+                  } else {
+                    todos.forEach((todo) => TodoUI.newTodo(todo))
+                  }
                 }
-
                 ///render new todo
                 static newTodo(todo) {
+                  const no_todo_list = document.querySelector("#noTodos");
+                  no_todo_list.textContent ="";
                   const todo_list = document.querySelector("#todos");
                   const newTodoCard = document.createElement("div");
-                  newTodoCard.innerHTML = `   <div class="col" >
-              <div class="card h-100">
-
-                <div id="todoKey" class="card-body" data-id="${todo.id}">
-                  <h5 class="card-title">${todo.id}</h5>
+                  newTodoCard.innerHTML = ` <div class="col mt-5 mb-5" >
+              <div class="border border-secondary "  >
+                <div id="todoKey" class="card-body toggle-dark" data-id="${todo.id}">
                   <h5 class="card-title">${todo.todo_task}</h5>
                   <p class="card-text">${todo.priority}</p>
                   <p class="card-text">${todo.body}</p>
                   <a href="#" class="btn btn-danger remove">Remove</a>
-
                 </div>
-                <div class="card-footer">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                <div class="card-footer toggle-dark">
+                  <small class="text-muted">Entered ${todo.date}</small>
                 </div>
               </div>
             </div>
     `;
-               
                   todo_list.appendChild(newTodoCard);
 
                 }
-                //validateMsg
+
+
+                //validation Msg bootstrap alert
                 static validateMsg(msg, className) {
                   const validDiv = document.createElement("div");
-                  /* <div class="alert alert-success">The message</div> */
-                  validDiv.className = `alert alert-${className}`
-                  validDiv.appendChild(document.createTextNode(msg));
                   const validContent = document.querySelector(".todo-alert");
                   const todoForm = document.querySelector("#todo-form");
+                  validDiv.className = `alert alert-${className}`
+                  validDiv.appendChild(document.createTextNode(msg));
                   validContent.insertBefore(validDiv, todoForm)
-
                   //alert timer
-
                   setTimeout(() => document.querySelector(".alert").remove(), 3000)
-
                 }
                 //clear form function
                 static clearForm() {
                   document.querySelector("#todo_task").value = "";
-                  document.querySelector("#priority").value = "";
                   document.querySelector("#body").value = "";
                 }
-
-                //remove todo
+                //remove todo from ui
                 static removeTodo(tarEl) {
                   if (tarEl.classList.contains("remove")) {
-               tarEl.parentElement.parentElement.parentElement.remove()
+                    tarEl.parentElement.parentElement.parentElement.remove()
                   }
+                  
                 }
-
 
               }
 
-              // localstorage for todo
-              class Store {
+              // localstorage class for todos
+              class Todostore {
                 //get todo
                 static getTodos() {
                   let todos;
-                  if (localStorage.getItem("todos") === null) {
+                  if (localStorage.getItem("todos") === "") {
                     todos = [];
                   } else {
                     todos = JSON.parse(localStorage.getItem("todos"));
@@ -166,34 +174,36 @@
 
                 //add todo
                 static addTodo(todo) {
-                  const todos = Store.getTodos();
+                  const todos = Todostore.getTodos();
                   todos.push(todo);
                   localStorage.setItem("todos", JSON.stringify(todos));
                 }
 
-                //remove todo
+                //remove todo from storage
                 static removeStoreTodo(id) {
-                  const todos = Store.getTodos();
-                  todos.forEach((todo, index) => {
+                  const todos = Todostore.getTodos();
+                              todos.forEach((todo, index) => {
                     if (todo.id === id) {
-                      todos.splice(index, 1);
+                      todos.splice(index, 1)
                     }
                   })
+
                   localStorage.setItem("todos", JSON.stringify(todos));
                 }
 
               }
-              
+
               //event to display todo
               document.addEventListener("DOMContentLoaded", TodoUI.displayTodos);
 
               //event to add todo
               document.querySelector("#todo-form").addEventListener("submit", (e) => {
                 e.preventDefault();
-                const id = Math.floor(Math.random() * 9999999999999999)
+                const id = crypto.randomUUID()
                 const todo_task = document.querySelector("#todo_task").value;
                 const priority = document.querySelector("#priority").value;
                 const body = document.querySelector("#body").value;
+                const date = new Date().toDateString()
                 //validate 
                 if (todo_task === "") {
                   TodoUI.validateMsg("Need to enter a todo", "danger")
@@ -201,21 +211,22 @@
 
                   //add todo from storage
                   TodoUI.validateMsg("new Todo!", "success")
-                          const todo = new Todo(id, todo_task, priority, body)
+                  const todo = new Todo(id, todo_task, priority, body, date)
                   TodoUI.newTodo(todo);
-                  Store.addTodo(todo);
+                  Todostore.addTodo(todo);
                   TodoUI.clearForm();
                 }
               })
 
               //event to remvove todo
               document.querySelector("#todos").addEventListener("click", (e) => {
-                const todoKey = document.querySelector("#todoKey")
-                console.log(todoKey.dataset.id);
-               TodoUI.removeTodo(e.target);
-                Store.removeStoreTodo(Number(todoKey.dataset.id));
+                const todoKey = document.querySelector("#todoKey");
+                TodoUI.removeTodo(e.target);
+                Todostore.removeStoreTodo(e.target.parentElement.dataset.id);
                 TodoUI.validateMsg("Todo was removed", "success");
               })
+
+
             </script>
   </body>
 

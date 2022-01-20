@@ -17,7 +17,7 @@
       id="navbarNavAltMarkup"
     >
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/#About">About</a>
+        <a class="nav-link toggle-dark" href="/#About">About</a>
         <li class="nav-item d-lg-none">
           <a href="#" class="nav-link">Projects</a>
         </li>
@@ -28,9 +28,19 @@
           >
         </li>
         <!-- on smaller screen display none, larger screen display btn -->
-        <a class="nav-link" href="/api/v1/contact-form">Contact</a>
+        <a class="nav-link toggle-dark" href="/api/v1/contact-form">Contact</a>
       </div>
       <!--    <a class="nav-link" href="#">Toggle light dark them</a> -->
     </div>
   </div>
 </nav>
+<div>
+  <button
+    class="fixed-top btn btn-secondary dark-mode-toggler"
+    data-bs-toggle="tooltip"
+    data-bs-placement="right"
+    title="Toggle light or dark theme!"
+  >
+    <i class="bi bi-circle-half"></i>
+  </button>
+</div>
